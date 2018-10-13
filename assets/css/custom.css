@@ -1,0 +1,105 @@
+html, body{
+    /*font-family: 'Source Sans Pro', sans-serif;*/
+    font-family: Georgia,serif;
+    height:100%;
+    margin:0;
+    padding:0;
+}
+h1{
+    font-weight: bold;
+    font-size: 27px;
+    text-align: center;
+    background: #222;
+    color: #fff;
+    padding: 20px 20px 20px 20px;
+    margin: 0;
+}
+h1 div.since {
+  font-weight:normal;
+  font-size: 12px;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    font-weight: 300;
+}
+p{
+    font-size: 14px;
+}
+/* separator */
+.line{
+    height: 1px;
+    margin:19px 0;
+    width: 100%;
+    background-color:  rgb(0, 0, 0);
+}
+
+
+.center-elements{
+    text-align: center;
+}
+
+.img100 {width: 100%}
+.nopadding {padding: 0;}
+
+table.minimal {
+  font-size: 12px;
+  background: #fff;
+  border-collapse: collapse;
+  text-align: left;
+  margin: 20px;
+  width:100%;
+}
+
+table.minimal thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+table.minimal th
+{
+  font-size: 16px;
+  font-weight: normal;
+  color: #222;
+  border-bottom: 2px solid #222;
+  padding: 10px 8px;
+}
+
+table.minimal tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+table.minimal td {
+  border-bottom: 1px solid #666;
+  color: #222;
+  padding: 6px 8px;
+  font-size:13px;
+}
+
+.circle {
+  background-color: #fff;
+  border: 3px solid black;
+  height: 40px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  width: 40px;
+  text-align: center;
+  padding: 7px;
+  font-size: 14px;
+}
+
+.circle_red {border-color:#ff3530;}
+#search {padding: 10px 20px 0 20px;}
+#search select {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #222;
+  width: 100%;
+  font-size:18px;
+  height:28px;
+}
+#search button#submit {background: #222; color: #fff; border: 0; radius: 5px; padding: 4px 20px; text-align:center;}
