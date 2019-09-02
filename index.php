@@ -56,9 +56,10 @@ $years = $dao->read_years();
 								$clean_year = str_replace("•   ","",$clean_year);
 								$clean_year = str_replace("• ","",$clean_year);
 								$clean_year = trim($clean_year);
+								if ($clean_year != "") {
 								?>
 							<option value="<?php echo urlencode($clean_year);?>" <?php if ($album_year == $clean_year) {echo 'selected="selected"';}?>><?php echo $clean_year;?></option>
-							<?php } ?>
+							<?php } }?>
 						</select>
 					</div>
 					<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -74,6 +75,7 @@ $years = $dao->read_years();
 					</div>
 					<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 						<button type="submit" name="submit" value="filter" id="submit">Filter</button>
+						<a href="export.php" style="display:inline-block; float:right; color: #fff; text-decoration:none; padding:4px 20px; background: #999; text-align:center;">Export csv</a>
 					</div>
 				</div>
 
@@ -125,6 +127,10 @@ $years = $dao->read_years();
       <?php }?>
     </tbody>
   </table>
+	<p>
+		<br /><br />
+		All the content © 2018 Condé Nast. This website is intended as a python / php development excercise related to <a href="https://medium.com/@simogol/pitchfork-reviews-and-scores-a-quick-analysis-tool-in-python-and-php-e0895b8db629" target="_blank">this article</a>. I am not earning a penny from it.
+	</p>
   </div>
 </body>
 </html>
