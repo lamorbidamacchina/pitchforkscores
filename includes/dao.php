@@ -14,7 +14,24 @@ class DAO {
   function read_albums() {
     try {
       $id = 0;
-      $query = $this->db->prepare('SELECT * FROM pitchfork_albums where id > :id order by review_date desc, id desc LIMIT 0,100');
+      $query = $this->db->prepare('SELECT * FROM pitchfork_albums where id > :id order by review_date desc, id desc LIMIT 0,300');
+      $query->execute( array(':id' => $id) );
+      $rows = [];
+      while ($row = $query->fetchObject()) {
+         $rows[] = $row;
+      }
+      return $rows;
+    }
+    catch(PDOException $e) {
+      //echo "Error: " . $e->getMessage();
+      return false;
+    }
+  }
+
+  function read_all_albums() {
+    try {
+      $id = 0;
+      $query = $this->db->prepare('SELECT * FROM pitchfork_albums where id > :id order by review_date desc, id desc');
       $query->execute( array(':id' => $id) );
       $rows = [];
       while ($row = $query->fetchObject()) {
@@ -41,7 +58,7 @@ class DAO {
 			$where_clause .= "(score LIKE :score) and ";
 		}
     try {
-      $query = $this->db->prepare("SELECT * FROM pitchfork_albums WHERE ".$where_clause." id > 0 order by review_date desc, id desc LIMIT 0,100");
+      $query = $this->db->prepare("SELECT * FROM pitchfork_albums WHERE ".$where_clause." id > 0 order by review_date desc, id desc LIMIT 0,300");
 
       if ($genre != "") {
 				$query->bindParam(':genre', $genre, PDO::PARAM_STR);
