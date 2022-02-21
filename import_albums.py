@@ -55,48 +55,49 @@ def main():
                     html_soup = BeautifulSoup(html_review_string, 'html.parser')
                     # find what you need in html page...
                     soup_title = html_soup.title
-                    h2 = html_soup.find("h2").get_text().encode('utf-8')
-                    h1 = html_soup.find("h1").get_text().encode('utf-8')
+                    h1 = html_soup.find_all("h1")[0].get_text().encode('utf-8')
+                    h2 = html_soup.select("a.SplitScreenContentHeaderArtistLink-bpAUMk div")
+                    if h2:
+                        h2 = h2[0].get_text().encode('utf-8')
+                    else:
+                        h2 = ''
 
-                    score = html_soup.select("span.score")
+                    score = html_soup.select("div.ScoreCircle-cJwsOz p")
                     if score:
                         score = score[0].get_text()
                     else:
                         score = ''
 
-                    picture = html_soup.select("div.single-album-tombstone__art img")
+                    # picture = html_soup.select("div.single-album-tombstone__art img")
+                    picture = html_soup.select("span.fCMktF img.byslZC")
                     if picture:
-                        picture = picture[0]['src']
+                        picture = picture[1]['src']
                     else:
                         picture = ''
 
-                    creator = html_soup.select("a.authors-detail__display-name")
-                    if creator:
-                        creator = creator[0].get_text().encode('utf-8')
-                    else:
-                        creator = ''
+                    creator = ''
 
-                    genre = html_soup.select("a.genre-list__link")
+                    genre = html_soup.select("p.InfoSliceValue-gSTMso")
                     if genre:
                         genre = genre[0].get_text().encode('utf-8')
                     else:
                         genre = ''
 
-                    album_label = html_soup.select("li.labels-list__item")
+                    album_label = html_soup.select("p.InfoSliceValue-gSTMso")
                     if album_label:
-                        album_label = album_label[0].get_text().encode('utf-8')
+                        album_label = album_label[1].get_text().encode('utf-8')
                     else:
                         album_label = ''
 
-                    album_year = html_soup.select("span.single-album-tombstone__meta-year")
+                    album_year = html_soup.select("time")
                     if album_year:
                         album_year = album_year[0].get_text().encode('utf-8')
                     else:
                         album_year = ''
 
-                    print h2
-                    print h1
-                    print score
+                    print(h2)
+                    print(h1)
+                    print(score)
                     # update database with data from html page
                     try:
                         x.execute("""UPDATE pitchfork_albums SET album_author = %s, album_title=%s, score=%s, album_art=%s, creator=%s, genre=%s, album_label=%s, album_year=%s WHERE guid=%s""",(h2,h1,score,picture,creator,genre,album_label,album_year,guid))
