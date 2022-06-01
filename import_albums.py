@@ -69,7 +69,7 @@ def main():
                         score = ''
 
                     # picture = html_soup.select("div.single-album-tombstone__art img")
-                    picture = html_soup.select("span.fCMktF img.byslZC")
+                    picture = html_soup.select("span.fCMktF img.dnUTOP")
                     if picture:
                         picture = picture[1]['src']
                     else:

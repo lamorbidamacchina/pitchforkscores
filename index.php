@@ -109,17 +109,21 @@ $years = $dao->read_years();
           </td>
           <td>
             <a href="<?php echo $item->link; ?>" target="_blank" title="<?php echo $item->description; ?>">
+						<?php if ($item->album_art) { ?>
               <img src="<?php echo $item->album_art; ?>" width="80"/>
+						<?php } else { ?>
+							<img src="https://lamorbidamacchina.com/pitchforkscores/assets/images/lp_record_icon.png?123" width="80"/>
+						<?php } ?>
             </a>
           </td>
           <?php
             $more_than_80 = "";
             $score_num = str_replace(".","",$item->score);
-            if ($score_num > 80) {$more_than_80 = "circle_red";}
+            if ($score_num >= 80) {$more_than_80 = "circle_red";}
           ?>
           <td><div class="circle <?php echo $more_than_80;?>"><?php echo $item->score; ?></div></td>
           <td><?php echo $item->album_author; ?></td>
-          <td><?php echo $item->album_title; ?></td>
+          <td><a href="<?php echo $item->link; ?>" target="_blank" title="<?php echo $item->description; ?>"><?php echo $item->album_title; ?></a></td>
           <td><?php echo $item->genre; ?></td>
           <td><?php echo $item->album_label; ?></td>
           <td><?php echo str_replace("• ","",$item->album_year); ?></td>
